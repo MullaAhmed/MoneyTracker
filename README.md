@@ -45,8 +45,8 @@ To run it on your local server
 python manage.py runserver
 ```
 #### API Testing
-Click [here](https://documenter.getpostman.com/view/21828511/UzJLPwov) for the documentation of the postman collection of all the APIs.  
-This is the JSON link for the collection: https://www.getpostman.com/collections/e3454fa7c7ee68f35a34 
+Click [here](https://documenter.getpostman.com/view/21828511/2s8Z72VXUq) for the documentation of the postman collection of all the APIs.  
+Access the API collection: https://elements.getpostman.com/redirect?entityId=21828511-6b276614-3566-471d-b26c-2a9828036097&entityType=collection
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
