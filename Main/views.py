@@ -99,8 +99,10 @@ class GroupApiView(APIView):
     permission_classes=[IsAuthenticated]
     
     def post(self,request):
-        print(request.data)
-        members=list(map(int,str(dict(request.data)['members']).split(',')))
+        try:
+            members=list(map(int,str(dict(request.data)['members']).split(',')))
+        except:
+            members=list(map(int,str(dict(request.data)['members'][0]).split(',')))
         print(members)
         data={'name':request.data['name'],'members':members,'expense_map':{'expenses':[]}}
         serializer = GroupSerializer(data=data)
@@ -177,9 +179,23 @@ class ExpenseApiView(APIView):
         
         group_balance_sheet.delay(serializer.data['group'])
        
-        
         return response.Response({'status':200,'payload':serializer.data,'message':'Expense Added successfully'})
+
+
+class GroupExpenseApiView(generics.ListAPIView):
+
+    authentication_classes = [TokenAuthentication]
+    permission_classes=[IsAuthenticated]
+    serializer_class = ExpenseSerializer
+    lookup_field=('id')
+    
+    def get_queryset(self):
+        id = self.kwargs.get(self.lookup_field)
+        expenses=Expense.objects.filter(group=id)
+
+        return expenses
         
+
 
 class GroupBalanceSheetApiView(APIView):
     def post(self,request):

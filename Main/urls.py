@@ -22,6 +22,8 @@ urlpatterns = [
     path('expense/', views.ExpenseApiView.as_view()),
     path('expense/<int:id>/', views.ExpenseDetailApiView.as_view()),
 
+    path('groupexpense/<int:id>/', views.GroupExpenseApiView.as_view()),
+
     path('groupbalancesheet/', views.GroupBalanceSheetApiView.as_view()),
     
     
